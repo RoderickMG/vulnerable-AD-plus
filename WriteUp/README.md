@@ -17,7 +17,7 @@ The lab environment is intentionally set up to mimic real-world conditions with 
 
 Here's a list of writeups available in this repository:
 
-1. [**ASREProast to Zerologon**](writeups/writeup1.md) - A detailed guide on exploiting Technique A.
+1. [**ASREProast to Zerologon**](WriteUp/ASREProast_to_Zerologon.md) - A detailed guide on exploiting Technique A.
 
 We will continue to add more writeups to cover a wide range of techniques, so stay tuned for updates!
 
