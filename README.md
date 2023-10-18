@@ -5,6 +5,8 @@
 
 Create a vulnerable active directory that's allowing you to test most of active directory attacks in local lab
 
+### I wrote my own report and added it to the wiki section.
+
 ### Main Features
 - Randomize Attacks
 - Full Coverage of the mentioned attacks
