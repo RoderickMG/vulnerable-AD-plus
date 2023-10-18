@@ -10,7 +10,10 @@ Create a vulnerable active directory that's allowing you to test most of active 
 - Full Coverage of the mentioned attacks
 - you need run the script in DC with Active Directory installed 
 - Some of attacks require client workstation
-  
+- 
+### Writeup
+Now includes a writeups section [**WriteUp**](WriteUp).
+
 ### Supported Attacks
 - Abusing ACLs/ACEs
 - Kerberoasting
@@ -29,8 +32,6 @@ Create a vulnerable active directory that's allowing you to test most of active 
 - Public SMB Share
 - Zerologon (Check version)
 
-### Writeup
-Now includes a writeup in the wiki section.
 
 ### Example
 ```powershell
